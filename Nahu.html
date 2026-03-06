@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Nahwu: Uji pemahaman Bab Nakirah dan Ma'rifah</title>
+    <meta name="description" content="Uji pemahaman Bab Nakirah dan Ma'rifah">
+    <meta property="og:title" content="Uji pemahaman Bab Nakirah dan Ma'rifah">
+    <meta property="og:description" content="Ayo uji kemampuan Nahwu antum dengan kuis interaktif ini!">
+    <meta property="og:image" content="https://arifabdrohim52-sys.github.io/afalkhamsah/6.jpg">
+    <meta property="og:url" content="https://arifabdrohim52-sys.github.io/Nahu/Nahu.html">
+    <meta property="og:type" content="website">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; background:#f4f6f8; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+        .quiz-container { width:95%; max-width:700px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.15); background:#fff; overflow:hidden; }
+        .hidden { display:none; }
+        .arab { font-family: 'Amiri', serif; direction: rtl; font-size: 1.2em; line-height: 1.8; }
+        .answers button { display: block; width: 100%; margin: 8px 0; padding: 14px; border: 2px solid #3498db; border-radius: 12px; text-align: center; transition: .25s; }
+        .answers button.correct { background: #2ecc71 !important; color: #fff; border-color: #27ae60; }
+        .answers button.wrong { background: #e74c3c !important; color: #fff; border-color: #c0392b; }
+        .overlay-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 1.5rem; width: 85%; max-width: 350px; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div id="intro" class="relative text-center">
+        <img src="./4.png" alt="Sampul" class="w-full brightness-50 object-cover min-h-[400px]">
+        <div class="overlay-box">
+            <h1 class="text-xl font-bold mb-4 text-gray-800">Uji pemahaman Bab Nakirah dan Ma'rifah</h1>
+            <input type="text" id="name" placeholder="Nama Antum" class="w-full p-3 mb-3 border rounded-xl outline-none focus:border-blue-500">
+            <input type="text" id="region" placeholder="Daerah Antum" class="w-full p-3 mb-4 border rounded-xl outline-none focus:border-blue-500">
+            <button id="btnStart" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-all">Mulai Kuis</button>
+        </div>
+    </div>
+
+    <div id="quiz" class="hidden p-6">
+        <div class="flex justify-between items-center mb-4">
+            <span id="question-label" class="text-blue-600 font-bold text-xs uppercase tracking-widest"></span>
+            <div id="timer-display" class="bg-red-100 text-red-600 px-4 py-1 rounded-full font-bold">⏱️ <span id="time-left">20</span>s</div>
+        </div>
+        <div id="question-container"></div>
+        <button id="nextBtn" class="hidden w-full mt-6 py-3 bg-blue-600 text-white font-bold rounded-xl">Lanjut ➡️</button>
+    </div>
+
+    <div id="result" class="hidden p-0 text-center">
+        <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white">
+            <h1 class="text-xl font-semibold opacity-90 mb-2">Tes Selesai!</h1>
+            <div class="flex justify-center my-4">
+                <div class="relative">
+                    <div id="scoreCircle" class="w-32 h-32 rounded-full border-8 border-white/20 flex items-center justify-center text-5xl font-extrabold shadow-2xl transition-all duration-1000">0</div>
+                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-blue-600 px-4 py-1 rounded-full text-[10px] font-bold shadow-md whitespace-nowrap uppercase">SKOR AKHIR</div>
+                </div>
+            </div>
+            <p id="resQual" class="text-lg font-bold mb-1"></p>
+            <div id="rankText" class="text-sm opacity-80 font-medium italic">Memproses data...</div>
+        </div>
+
+        <div class="p-8 bg-white">
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="text-left p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <p class="text-[10px] uppercase text-gray-400 font-bold">Nama</p>
+                    <p id="resName" class="font-semibold text-gray-700 truncate"></p>
+                </div>
+                <div class="text-left p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <p class="text-[10px] uppercase text-gray-400 font-bold">Daerah</p>
+                    <p id="resRegion" class="font-semibold text-gray-700 truncate"></p>
+                </div>
+            </div>
+
+            <div class="mb-8 p-4 rounded-2xl bg-red-50 border border-red-100 text-left">
+                <p class="text-xs font-bold text-red-800 uppercase mb-1">Perlu Muraja'ah Soal:</p>
+                <p id="resWrongNumbers" class="text-sm text-red-700 font-medium"></p>
+            </div>
+            
+            <div class="space-y-3">
+                <button id="btnSertifikat" disabled class="w-full py-4 bg-gray-200 text-gray-400 font-bold rounded-2xl cursor-not-allowed transition-all italic">⏳ Tunggu Sertifikat...</button>
+                <button id="btnRaport" disabled class="w-full py-4 bg-gray-200 text-gray-400 font-bold rounded-2xl transition-all opacity-50 italic">⏳ Tunggu Raport...</button>
+                <button id="btnRetry" class="w-full py-4 bg-blue-100 text-blue-700 font-bold rounded-2xl hover:bg-blue-200 transition-all border border-blue-200">🔄 Ulangi Kuis</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="raportPage" class="hidden p-6">
+        <h1 class="text-xl font-bold mb-4 text-center text-gray-800 italic underline">Raport Global</h1>
+        
+        <div class="mb-6 p-4 bg-amber-50 rounded-2xl border border-amber-200 text-left">
+            <h3 class="text-xs font-bold text-amber-800 uppercase mb-3 flex items-center gap-2">⚠️ Rekapitulasi Soal Sulit (Global)</h3>
+            <div id="analyticsList" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <h3 class="text-xs font-bold text-gray-400 uppercase mb-3 text-left">Peringkat & Kualifikasi Peserta</h3>
+        <div id="raportList" class="space-y-2 max-h-80 overflow-y-auto pr-2"></div>
+        <button id="btnBackToResult" class="w-full mt-6 py-3 bg-gray-800 text-white rounded-xl font-bold">Kembali</button>
+    </div>
+</div>
+
+<canvas id="certCanvas" width="1200" height="900" class="hidden"></canvas>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzllXMsKSYHCjTTYTR97YC8A1Bh4jqpRsth_s_B0pEmzYmD2Bd-VfBjOPgT2TQWGwXz/exec";
+let currentUserToken = '', currentQuestion = 0, score = 0, userName = '', userRegion = '', countdown, timeLeft = 20, allData = [], wrongQuestions = [];
+
+const questions = [
+  { 
+    q: "الطلاب ____ ناموا زملائي", 
+    options: ["الذي", "الذين", "التي", "اللاتي"], 
+    a: 1, 
+    exp: "Kata 'الطلاب' adalah jamak mudzakkar berakal, maka Isim Maushul yang tepat adalah 'الذين'." 
+  },
+  { 
+    q: "الكتُب ____ قرأتها جميلة", 
+    options: ["الذي", "الذين", "التي", "اللاتي"], 
+    a: 2, 
+    exp: "Jamak li ghairil aqil (benda mati) seperti 'الكتب' dihukumi muannats, sehingga menggunakan 'التي'." 
+  },
+  { 
+    q: "Berapakah jumlah pembagian Isim Ma'rifah?", 
+    options: ["5", "6", "7", "8"], 
+    a: 1, 
+    exp: "Isim Ma'rifah berjumlah 6: Dhomir, Alam, Isim Isyarah, Isim Maushul, Isim bi Al, dan Idhafah kepada yang ma'rifah." 
+  },
+  { 
+    q: "Apa tingkatan pertama dalam urutan Isim Ma'rifah?", 
+    options: ["Isim Alam", "Isim Isyarah", "Dhomir", "Isim Maushul"], 
+    a: 2, 
+    exp: "Urutan pertama yang paling ma'rifah menurut mayoritas ulama Nahwu adalah Dhomir (kata ganti)." 
+  },
+  { 
+    q: "Manakah contoh dhomir munfasil yang kedudukan i'rabnya nashab?", 
+    options: ["أنت طالب", "ضربْتُكَ", "إياك ضربت", "نحن مسلمون"], 
+    a: 2, 
+    exp: "'إياك' adalah dhomir munfasil (terpisah) manshub (biasanya sebagai maf'ul bih)." 
+  },
+  { 
+    q: "Apa tanda ta'nits pada kata 'سلمى'?", 
+    options: ["Ta' Marbuthah", "Alif Maqshurah", "Alif Mamdudah", "Gak ada"], 
+    a: 1, 
+    exp: "Salma memiliki tanda muannats berupa Alif Maqshurah (ى) di akhir kata." 
+  },
+  { 
+    q: "Lengkapilah kalimat: كتبت بــ ...... القلمين ", 
+    options: ["هذان", "هذين", "هؤلاء", "تينك"], 
+    a: 1, 
+    exp: "Karena 'al-qalamaini' adalah majrur (karena huruf 'ba'), maka kata tunjuknya juga harus majrur yaitu 'هذين'." 
+  },
+  { 
+    q: "Apa penunjuk (qarinah) untuk Isim Alam supaya menunjukkan kemakrifatannya?", 
+    options: ["Alif Lam", "Idhafah", "Gak ada", "Isyarah"], 
+    a: 2, 
+    exp: "Isim Alam (nama) tidak membutuhkan qarinah tambahan karena sudah makrifat dari asalnya (bi dzaatihi)." 
+  },
+  { 
+    q: "Apa syarat utama bagi sebuah Jumlah Silah?", 
+    options: ["Harus ada dhomir yang kembali ke isim maushul", "Harus berupa fiil mudhari", "Harus menggunakan Alif Lam", "Harus majrur"], 
+    a: 0, 
+    exp: "Jumlah Silah wajib memiliki 'A-id, yaitu dhomir yang menghubungkan kalimat tersebut kembali ke Isim Maushul." 
+  },
+  { 
+    q: "Bagaimana bentuk fiil mabni lil majhul untuk: يَشُدُّ محمدٌ الحَبْلَ؟", 
+    options: ["يُشَدُّ الحبلِ", "يُشَدُّ الحبلُ", "شُدَّ الحبلَ", "يُشَدُّ محمدٌ"], 
+    a: 1, 
+    exp: "Fiil mudhari majhul 'يُشَدُّ' dan objek 'الحبل' naik menjadi Naibul Fail (marfu')." 
+  },
+  { 
+    q: "Apa i'rab kata 'هذان' dalam kalimat 'هذان طالبان'?", 
+    options: ["Mubtada' marfu' dengan dhommah", "Mubtada' marfu' dengan alif", "Khabar marfu' dengan alif", "Mubtada' mabni"], 
+    a: 1, 
+    exp: "'هذان' adalah mulhaq lil muthanna, maka i'rabnya marfu' dengan tanda Alif. Selain isim isyarah mutsanna semuanya mabni" 
+  },
+  { 
+    q: "Kata tunjuk 'هؤلاء' digunakan untuk...", 
+    options: ["Jama' berakal yang dekat", "Jama' tidak berakal yang dekat", "Mufrad yang dekat", "Jama' yang jauh"], 
+    a: 0, 
+    exp: "'هؤلاء' digunakan untuk jamak berakal baik laki-laki maupun perempuan dalam jarak dekat." 
+  },
+  { 
+    q: "Apa fa'il dari kata 'سأل' pada kalimat 'محمد سأل الدرس'?", 
+    options: ["محمد", "الدرس", "Dhomir mustatir jawaazan taqdiiruhu huwa", "Dhomir mustatir wujuban taqdiruhu huwa"], 
+    a: 2, 
+    exp: "Fa'ilnya tersembunyi (mustatir) berupa dhomir 'huwa' yang kembali kepada Muhammad." 
+  },
+  { 
+    q: "Apa dhomir yang terdapat pada kata 'يبكين' dalam kalimat 'َالنِّساءُ يَبْكِيْن'?", 
+    options: ["Nun Mutakallim ma'a ghairihi", "Ya' Mukhatabah", "Nun Niswah", "Dhamir Mustatir"], 
+    a: 2, 
+    exp: "Huruf Nun di sana adalah Nun Niswah yang menunjukkan subjek perempuan banyak." 
+  }
+];
+function formatArabic(text){ return text.replace(/([\u0600-\u06FF\s]+)/g, '<span class="arab">$1</span>'); }
+
+function getCategoryData(p) {
+    if(p >= 90) return { qual: "Mumtaz", color: "text-green-600", bg: "bg-green-600", hex: "#16a34a", lightBg: "bg-green-50" };
+    if(p >= 80) return { qual: "Jayyid Jiddan", color: "text-blue-600", bg: "bg-blue-600", hex: "#2563eb", lightBg: "bg-blue-50" };
+    if(p >= 65) return { qual: "Jayyid", color: "text-yellow-600", bg: "bg-yellow-600", hex: "#ca8a04", lightBg: "bg-yellow-50" };
+    if(p >= 50) return { qual: "Maqbul", color: "text-orange-600", bg: "bg-orange-600", hex: "#ea580c", lightBg: "bg-orange-50" };
+    return { qual: "Rasib", color: "text-red-600", bg: "bg-red-600", hex: "#dc2626", lightBg: "bg-red-50" };
+}
+
+function startTimer() {
+    clearInterval(countdown);
+    timeLeft = 20;
+    document.getElementById('time-left').innerText = timeLeft;
+    countdown = setInterval(() => {
+        timeLeft--;
+        document.getElementById('time-left').innerText = timeLeft;
+        if(timeLeft <= 0) { clearInterval(countdown); handleTimeout(); }
+    }, 1000);
+}
+
+function handleTimeout() {
+    const q = questions[currentQuestion];
+    document.querySelectorAll('.answers button').forEach((b, i) => {
+        b.disabled = true;
+        if(i === q.a) b.classList.add('correct');
+    });
+    wrongQuestions.push(currentQuestion + 1);
+    document.getElementById('exp').innerHTML = `<div class="text-red-600 font-bold mb-2">⏰ Waktu Habis! Poin soal ini hangus.</div><strong>Keterangan:</strong><br>${formatArabic(q.exp)}`;
+    document.getElementById('exp').classList.remove('hidden');
+    document.getElementById('nextBtn').classList.remove('hidden');
+}
+
+document.getElementById('btnStart').onclick = () => {
+    userName = document.getElementById('name').value.trim();
+    userRegion = document.getElementById('region').value.trim();
+    if(!userName || !userRegion) return alert("Isi Nama & Daerah!");
+    currentUserToken = "ID-" + Date.now();
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('quiz').classList.remove('hidden');
+    loadQuestion();
+};
+
+function loadQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById('question-label').innerText = `Soal ${currentQuestion+1} / ${questions.length}`;
+    document.getElementById('question-container').innerHTML = `
+        <div class="mb-5 font-semibold text-lg">${formatArabic(q.q)}</div>
+        <div class="answers">${q.options.map((opt,i)=>`<button onclick="selectAnswer(${i})">${formatArabic(opt)}</button>`).join('')}</div>
+        <div id="exp" class="hidden mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 text-sm"><strong>Keterangan:</strong><br>${formatArabic(q.exp)}</div>
+    `;
+    document.getElementById('nextBtn').classList.add('hidden');
+    startTimer();
+}
+
+window.selectAnswer = (idx) => {
+    clearInterval(countdown);
+    const q = questions[currentQuestion];
+    document.querySelectorAll('.answers button').forEach((b, i) => {
+        b.disabled = true;
+        if(i === q.a) b.classList.add('correct');
+        if(i === idx && idx !== q.a) b.classList.add('wrong');
+    });
+    if(idx === q.a) score++; else wrongQuestions.push(currentQuestion + 1);
+    document.getElementById('exp').classList.remove('hidden');
+    document.getElementById('nextBtn').classList.remove('hidden');
+};
+
+document.getElementById('nextBtn').onclick = () => {
+    currentQuestion++;
+    if(currentQuestion < questions.length) loadQuestion();
+    else showResult();
+};
+
+async function showResult() {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    const p = Math.round((score / questions.length) * 100);
+    const cat = getCategoryData(p);
+    
+    document.getElementById('resName').innerText = userName;
+    document.getElementById('resRegion').innerText = userRegion;
+    document.getElementById('resQual').innerText = cat.qual;
+    document.getElementById('resWrongNumbers').innerText = wrongQuestions.length > 0 ? wrongQuestions.join(', ') : "Gak ada cacat. Sempurna!";
+    
+    document.getElementById('scoreCircle').className = `w-32 h-32 rounded-full border-8 border-white/20 flex items-center justify-center text-5xl font-extrabold shadow-2xl ${cat.bg}`;
+    document.getElementById('scoreCircle').innerText = p;
+
+    if(p >= 70) confetti();
+
+    try {
+        await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:JSON.stringify({name:userName, region:userRegion, score:p, wrong: wrongQuestions.join(','), token: currentUserToken}) });
+        const res = await fetch(SCRIPT_URL);
+        const data = await res.json();
+        allData = (Array.isArray(data) ? data : (data.participants || [])).map(item => ({
+            name: item.name || item[0], region: item.region || item[1], score: parseInt(item.score || item[2]) || 0, wrong: item.wrong || item[3], token: item.token || item[4]
+        })).sort((a,b) => b.score - a.score);
+
+        const rank = allData.findIndex(i => String(i.token) === String(currentUserToken)) + 1;
+        document.getElementById('rankText').innerText = `Peringkat ${rank} dari ${allData.length} Peserta`;
+
+        // Aktifkan Tombol
+        const bS = document.getElementById('btnSertifikat');
+        bS.disabled = false;
+        bS.innerText = "🏆 Unduh Sertifikat";
+        bS.classList.replace('bg-gray-200', 'bg-amber-500');
+        bS.classList.replace('text-gray-400', 'text-white');
+        bS.classList.remove('italic');
+
+        const bR = document.getElementById('btnRaport');
+        bR.disabled = false;
+        bR.innerText = "📊 Lihat Raport & Rekapitulasi";
+        bR.classList.replace('bg-gray-200', 'bg-gray-800');
+        bR.classList.replace('text-gray-400', 'text-white');
+        bR.classList.remove('italic', 'opacity-50');
+        
+    } catch (e) { 
+        console.error(e);
+        document.getElementById('rankText').innerText = "Gagal memuat peringkat.";
+    }
+}
+
+function renderRaport() {
+    const rL = document.getElementById('raportList');
+    const aL = document.getElementById('analyticsList');
+    
+    rL.innerHTML = allData.map((p, i) => {
+        const c = getCategoryData(p.score);
+        const isMe = String(p.token) === String(currentUserToken);
+        return `
+        <div class="flex justify-between items-center p-3 border rounded-xl mb-2 ${c.lightBg} ${isMe ? 'ring-4 ring-blue-600 scale-[1.02] shadow-md' : 'border-gray-200'} transition-all">
+            <div class="text-xs text-left">
+                <div class="flex items-center gap-2">
+                    <b class="text-gray-800 text-sm">${i+1}. ${p.name}</b> 
+                    ${isMe ? '<span class="bg-blue-600 text-white px-2 py-0.5 rounded-full text-[8px] animate-pulse">ANTUM</span>' : ''}
+                </div>
+                <span class="text-gray-500">${p.region}</span> • <span class="font-bold ${c.color}">${c.qual}</span>
+            </div>
+            <div class="text-right">
+                <div class="font-black text-xl ${c.color}">${p.score}%</div>
+            </div>
+        </div>`;
+    }).join('');
+
+    let counts = {};
+    allData.forEach(d => {
+        if(d.wrong) d.wrong.toString().split(',').forEach(num => {
+            let n = num.trim();
+            if(n) counts[n] = (counts[n] || 0) + 1;
+        });
+    });
+    
+    aL.innerHTML = Object.entries(counts)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([num, count]) => `
+            <div class="bg-white px-3 py-1 rounded-full border border-amber-300 text-[10px] font-bold text-amber-700 shadow-sm">
+                Soal ${num}: ${count} Orang Salah
+            </div>
+        `).join('');
+}
+
+document.getElementById('btnRetry').onclick = () => { location.reload(); };
+
+document.getElementById('btnRaport').onclick = () => { 
+    renderRaport(); 
+    document.getElementById('result').classList.add('hidden'); 
+    document.getElementById('raportPage').classList.remove('hidden'); 
+};
+document.getElementById('btnBackToResult').onclick = () => { 
+    document.getElementById('raportPage').classList.add('hidden'); 
+    document.getElementById('result').classList.remove('hidden'); 
+};
+
+document.getElementById('btnSertifikat').onclick = () => {
+    const canvas = document.getElementById('certCanvas');
+    const ctx = canvas.getContext('2d');
+    const p = Math.round((score / questions.length) * 100);
+    const cat = getCategoryData(p);
+    const img = new Image();
+    img.src = "cert-bg1.jpg"; 
+    img.onload = () => {
+        ctx.drawImage(img, 0, 0, 1200, 900);
+        ctx.textAlign = "center"; ctx.fillStyle = "#2c3e50";
+        ctx.font = "bold 45px Montserrat"; ctx.fillText(userName, 725, 291);
+        ctx.textAlign = "left"; ctx.font = "30px Montserrat"; ctx.fillText(userRegion, 562, 370);
+        ctx.fillStyle = cat.hex; ctx.font = "bold 30px Montserrat"; ctx.fillText(`${p}% (${cat.qual})`, 600, 558);
+        const rank = allData.findIndex(i => String(i.token) === String(currentUserToken)) + 1;
+        ctx.fillStyle = "#2c3e50"; ctx.fillText(`${rank} dari ${allData.length} Peserta`, 487, 618);
+        const link = document.createElement('a'); link.download = `Sertifikat_${userName}.png`; link.href = canvas.toDataURL(); link.click();
+    };
+};
+</script>
+</body>
+</html>
