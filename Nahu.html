@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Nahwu: Uji pemahaman Bab Nakirah dan Ma'rifah</title>
-    <meta name="description" content="Uji pemahaman Bab Nakirah dan Ma'rifah">
-    <meta property="og:title" content="Uji pemahaman Bab Nakirah dan Ma'rifah">
+    <title>Test Nahwu: Uji pemahaman Bab Mubtada' dan Khabar, inna-anna, hal</title>
+    <meta name="description" content="Uji pemahaman Bab Mubtada' dan Khabar, inna-anna, hal">
+    <meta property="og:title" content="Uji pemahaman Bab Mubtada' dan Khabar, inna-anna, hal">
     <meta property="og:description" content="Ayo uji kemampuan Nahwu antum dengan kuis interaktif ini!">
     <meta property="og:image" content="https://arifabdrohim52-sys.github.io/Nahu/6.jpg">
     <meta property="og:url" content="https://arifabdrohim52-sys.github.io/Nahu/Nahu.html">
@@ -32,7 +32,7 @@
     <div id="intro" class="relative text-center">
         <img src="./4.png" alt="Sampul" class="w-full brightness-50 object-cover min-h-[400px]">
         <div class="overlay-box">
-            <h1 class="text-xl font-bold mb-4 text-gray-800">Uji pemahaman Bab Nakirah dan Ma'rifah</h1>
+            <h1 class="text-xl font-bold mb-4 text-gray-800">Uji pemahaman Bab Mubtada' dan Khabar, inna-anna, hal</h1>
             <input type="text" id="name" placeholder="Nama Antum" class="w-full p-3 mb-3 border rounded-xl outline-none focus:border-blue-500">
             <input type="text" id="region" placeholder="Daerah Antum" class="w-full p-3 mb-4 border rounded-xl outline-none focus:border-blue-500">
             <button id="btnStart" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-all">Mulai Kuis</button>
@@ -108,88 +108,88 @@ let currentUserToken = '', currentQuestion = 0, score = 0, userName = '', userRe
 
 const questions = [
   { 
-    q: "الطلاب ____ ناموا زملائي", 
-    options: ["الذي", "الذين", "التي", "اللاتي"], 
-    a: 1, 
-    exp: "Kata 'الطلاب' adalah jamak mudzakkar berakal, maka Isim Maushul yang tepat adalah 'الذين'." 
-  },
-  { 
-    q: "الكتُب ____ قرأتها جميلة", 
-    options: ["الذي", "الذين", "التي", "اللاتي"], 
-    a: 2, 
-    exp: "Jamak li ghairil aqil (benda mati) seperti 'الكتب' dihukumi muannats, sehingga menggunakan 'التي'." 
-  },
-  { 
-    q: "Berapakah jumlah pembagian Isim Ma'rifah?", 
-    options: ["5", "6", "7", "8"], 
-    a: 1, 
-    exp: "Isim Ma'rifah berjumlah 6: Dhomir, Alam, Isim Isyarah, Isim Maushul, Isim bi Al, dan Idhafah kepada yang ma'rifah." 
-  },
-  { 
-    q: "Apa tingkatan pertama dalam urutan Isim Ma'rifah?", 
-    options: ["Isim Alam", "Isim Isyarah", "Dhomir", "Isim Maushul"], 
-    a: 2, 
-    exp: "Urutan pertama yang paling ma'rifah menurut mayoritas ulama Nahwu adalah Dhomir (kata ganti)." 
-  },
-  { 
-    q: "Manakah contoh dhomir munfasil yang kedudukan i'rabnya nashab?", 
-    options: ["أنت طالب", "ضربْتُكَ", "إياك ضربت", "نحن مسلمون"], 
-    a: 2, 
-    exp: "'إياك' adalah dhomir munfasil (terpisah) manshub (biasanya sebagai maf'ul bih)." 
-  },
-  { 
-    q: "Apa tanda ta'nits pada kata 'سلمى'?", 
-    options: ["Ta' Marbuthah", "Alif Maqshurah", "Alif Mamdudah", "Gak ada"], 
-    a: 1, 
-    exp: "Salma memiliki tanda muannats berupa Alif Maqshurah (ى) di akhir kata." 
-  },
-  { 
-    q: "Lengkapilah kalimat: كتبت بــ ...... القلمين ", 
-    options: ["هذان", "هذين", "هؤلاء", "تينك"], 
-    a: 1, 
-    exp: "Karena 'al-qalamaini' adalah majrur (karena huruf 'ba'), maka kata tunjuknya juga harus majrur yaitu 'هذين'." 
-  },
-  { 
-    q: "Apa penunjuk (qarinah) untuk Isim Alam supaya menunjukkan kemakrifatannya?", 
-    options: ["Alif Lam", "Idhafah", "Gak ada", "Isyarah"], 
-    a: 2, 
-    exp: "Isim Alam (nama) tidak membutuhkan qarinah tambahan karena sudah makrifat dari asalnya (bi dzaatihi)." 
-  },
-  { 
-    q: "Apa syarat utama bagi sebuah Jumlah Silah?", 
-    options: ["Harus ada dhomir yang kembali ke isim maushul", "Harus berupa fiil mudhari", "Harus menggunakan Alif Lam", "Harus majrur"], 
+    q: "Ubah menjadi khabar jumlah fi'liyyah: مُحَمَّدٌ آكِلٌ", 
+    options: ["مُحَمَّدٌ يَأْكُلُ", "كُلْ يَا مُحَمَّدُ", "يَأْكُلُ مُحَمَّدٌ", "مُحَمَّدٌ الْمَأْكُولُ"], 
     a: 0, 
-    exp: "Jumlah Silah wajib memiliki 'A-id, yaitu dhomir yang menghubungkan kalimat tersebut kembali ke Isim Maushul." 
+    exp: "Khabar jumlah fi'liyyah harus mengandung fi'il. Isim fail 'آكِلٌ' diubah menjadi fi'il mudhari 'يَأْكُلُ'." 
   },
   { 
-    q: "Bagaimana bentuk fiil mabni lil majhul untuk: يَشُدُّ محمدٌ الحَبْلَ؟", 
-    options: ["يُشَدُّ الحبلِ", "يُشَدُّ الحبلُ", "شُدَّ الحبلَ", "يُشَدُّ محمدٌ"], 
-    a: 1, 
-    exp: "Fiil mudhari majhul 'يُشَدُّ' dan objek 'الحبل' naik menjadi Naibul Fail (marfu')." 
+    q: "Apa kedudukan kalimat 'يَقُومُ' dalam: جَاءَ مُحَمَّدٌ يَقُومُ؟", 
+    options: ["Khabar", "Na'at", "Hal jumlah fi'liyyah", "Maf'ul bih"], 
+    a: 2, 
+    exp: "Kalimat yang datang setelah isim ma'rifah (مُحَمَّدٌ) dan menjelaskan keadaan subjek disebut Hal." 
   },
   { 
-    q: "Apa i'rab kata 'هذان' dalam kalimat 'هذان طالبان'?", 
-    options: ["Mubtada' marfu' dengan dhommah", "Mubtada' marfu' dengan alif", "Khabar marfu' dengan alif", "Mubtada' mabni"], 
-    a: 1, 
-    exp: "'هذان' adalah mulhaq lil muthanna, maka i'rabnya marfu' dengan tanda Alif. Selain isim isyarah mutsanna semuanya mabni" 
+    q: "Mana khabar dalam kalimat: مُحَمَّدٌ يَقُومُ عَلَى الْأَرْضِ؟", 
+    options: ["مُحَمَّدٌ", "عَلَى الْأَرْضِ", "Jumlah fi'liyyah يَقُومُ", "Mustatir"], 
+    a: 2, 
+    exp: "Khabar adalah penjelas keadaan Mubtada'. Dalam kalimat ini, penjelasnya adalah perbuatan 'يَقُومُ'." 
   },
   { 
-    q: "Kata tunjuk 'هؤلاء' digunakan untuk...", 
-    options: ["Jama' berakal yang dekat", "Jama' tidak berakal yang dekat", "Mufrad yang dekat", "Jama' yang jauh"], 
+    q: "Lengkapi dengan hal mufrad: جِئْتُ ____", 
+    options: ["آكِلًا", "آكِلٌ", "آكُلُ", "الطَّعَامَ"], 
     a: 0, 
-    exp: "'هؤلاء' digunakan untuk jamak berakal baik laki-laki maupun perempuan dalam jarak dekat." 
+    exp: "Hal mufrad wajib berupa isim nakirah yang manshub (berharakat fathatain)." 
   },
   { 
-    q: "Apa fa'il dari kata 'سأل' pada kalimat 'محمد سأل الدرس'?", 
-    options: ["محمد", "الدرس", "Dhomir mustatir jawaazan taqdiiruhu huwa", "Dhomir mustatir wujuban taqdiruhu huwa"], 
-    a: 2, 
-    exp: "Fa'ilnya tersembunyi (mustatir) berupa dhomir 'huwa' yang kembali kepada Muhammad." 
+    q: "Bagaimana cara membaca 'ان' pada kalimat: رَأَيْتُ أَنَّكَ تَصُومُ؟", 
+    options: ["Inna (إِنَّ)", "Anna (أَنَّ)", "An (أَنْ)", "In (إِنْ)"], 
+    a: 1, 
+    exp: "Dibaca 'Anna' (أَنَّ) karena berfungsi sebagai masdar muawwal yang menempati posisi maf'ul bih." 
   },
   { 
-    q: "Apa dhomir yang terdapat pada kata 'يبكين' dalam kalimat 'َالنِّساءُ يَبْكِيْن'?", 
-    options: ["Nun Mutakallim ma'a ghairihi", "Ya' Mukhatabah", "Nun Niswah", "Dhamir Mustatir"], 
+    q: "Ubah isim masdar menjadi masdar muawwal dengan An: رَأَيْتُ كِتَابَتَكَ", 
+    options: ["رَأَيْتُ أَنْ تَكْتُبَ", "رَأَيْتُ كَتَبَكَ", "رَأَيْتُ أَنَّكَ كَاتِبٌ", "رَأَيْتُ كَاتِبًا"], 
+    a: 0, 
+    exp: "Masdar muawwal dapat dibentuk menggunakan susunan 'An (أَنْ) + Fi'il Mudhari'." 
+  },
+  { 
+    q: "Ubah 'رَأَيْتُ كِتَابَتَكَ' menjadi masdar muawwal yang terdiri dari 'Anna' (أَنَّ)", 
+    options: ["رَأَيْتُ أَنْ تَكْتُبَ", "رَأَيْتُ أَنَّكَ كَاتِبٌ", "رَأَيْتُ إِنَّكَ كَاتِبٌ", "رَأَيْتُ الْكِتَابَةَ"], 
+    a: 1, 
+    exp: "Masdar muawwal dari 'Anna' (أَنَّ) harus terdiri dari 'Anna + Isim + Khabar'." 
+  },
+  { 
+    q: "Apa kedudukan 'عَلَى الْكُرْسِيِّ' dalam kalimat: مُحَمَّدٌ عَلَى الْكُرْسِيِّ؟", 
+    options: ["Hal", "Mubtada'", "Khabar Syibh Jumlah", "Maf'ul Bih"], 
     a: 2, 
-    exp: "Huruf Nun di sana adalah Nun Niswah yang menunjukkan subjek perempuan banyak." 
+    exp: "Susunan jar-majrur (عَلَى الْكُرْسِيِّ) yang menjadi penjelas mubtada' disebut Khabar Syibh Jumlah." 
+  },
+  { 
+    q: "Dalam kalimat 'جَلَسَ مُحَمَّدٌ عَلَى الْكُرْسِيِّ', frasa 'عَلَى الْكُرْسِيِّ' adalah...", 
+    options: ["Hal Syibh Jumlah", "Khabar", "Na'at", "Mubtada'"],
+    a: 0, 
+    exp: "Frasa jar-majrur yang menjelaskan keadaan fa'il (subjek) saat melakukan pekerjaan disebut Hal Syibh Jumlah." 
+  },
+  { 
+    q: "Bagaimana cara membaca 'ان' setelah fi'il 'أَقُولُ' (أَقُولُ إِنَّ مُحَمَّدًا صَائِمٌ)؟", 
+    options: ["Anna (أَنَّ)", "Inna (إِنَّ)", "An (أَنْ)", "In (إِنْ)"], 
+    a: 1, 
+    exp: "Setelah kata kerja 'Qaul' (mengucap), Hamzah 'Inna' wajib dibaca kasrah (إِنَّ)." 
+  },
+  { 
+    q: "Lengkapi dengan hal mufrad: أَشْرَبُ ____ (Saya minum dalam keadaan berdiri)", 
+    options: ["قَائِمٌ", "قَائِمٍ", "قَائِمًا", "أَقُومُ"],
+    a: 2,
+    exp: "Hal (keadaan) harus manshub, tanda asalnya adalah fathatain (قَائِمًا)." 
+  },
+  { 
+    q: "Ubah menjadi mubtada' yang berupa masdar muawwal: النَّوْمُ جَيِّدٌ", 
+    options: ["أَنْ تَنَامَ جَيِّدٌ", "أَنْتَ نَامَ جَيِّدٌ", "إِنْ يَنَامُ جَيِّدٌ", "النَّوْمُ الْجَيِّدُ"], 
+    a: 0, 
+    exp: "Masdar sharih 'النَّوْمُ' diubah menjadi masdar muawwal 'أَنْ + fi'il mudhari' (أَنْ تَنَامَ)." 
+  },
+  { 
+    q: "Apa i'rab 'أَكَلَ' dalam kalimat 'مُحَمَّدٌ أَكَلَ'?", 
+    options: ["Khabar mufrad", "Khabar jumlah fi'liyyah", "Mubtada' muakhkhar", "Fa'il"], 
+    a: 1, 
+    exp: "'أَكَلَ' adalah fi'il madhi yang mengandung dhomir mustatir (هُوَ), sehingga ia dihitung sebagai satu kalimat (jumlah) yang menjadi khabar." 
+  },
+  { 
+    q: "Kenapa pada ayat 'إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ' dibaca 'Inna' (kasrah)?", 
+    options: ["Setelah qaul", "Awal jumlah (kalimat)", "Sebagai hal", "Kemauan penulis"], 
+    a: 1, 
+    exp: "Hamzah 'Inna' wajib dikasrah jika terletak di awal kalimat (Iftitah al-Jumlah)." 
   }
 ];
 function formatArabic(text){ return text.replace(/([\u0600-\u06FF\s]+)/g, '<span class="arab">$1</span>'); }
