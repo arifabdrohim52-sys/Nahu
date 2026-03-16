@@ -120,19 +120,19 @@ const questions = [
     exp: "Kalimat yang datang setelah isim ma'rifah (مُحَمَّدٌ) dan menjelaskan keadaan subjek disebut Hal." 
   },
   { 
-    q: "Mana khabar dalam kalimat: مُحَمَّدٌ يَقُومُ عَلَى الْأَرْضِ؟", 
+    q: "Mana khabar dalam kalimat: مُحَمَّدٌ يَقُومُ عَلَى الْأَرْضِ", 
     options: ["مُحَمَّدٌ", "عَلَى الْأَرْضِ", "Jumlah fi'liyyah يَقُومُ", "Mustatir"], 
     a: 2, 
     exp: "Khabar adalah penjelas keadaan Mubtada'. Dalam kalimat ini, penjelasnya adalah perbuatan 'يَقُومُ'." 
   },
   { 
-    q: "Lengkapi dengan hal mufrad: جِئْتُ ____", 
+    q: "Lengkapi dengan hal mufrad:  ____ جِئْتُ", 
     options: ["آكِلًا", "آكِلٌ", "آكُلُ", "الطَّعَامَ"], 
     a: 0, 
     exp: "Hal mufrad wajib berupa isim nakirah yang manshub (berharakat fathatain)." 
   },
   { 
-    q: "Bagaimana cara membaca 'ان' pada kalimat: رَأَيْتُ انَّكَ تَصُومُ؟", 
+    q: "Bagaimana cara membaca 'ان' pada kalimat: رَأَيْتُ انَّكَ تَصُومُ", 
     options: ["Inna (إِنَّ)", "Anna (أَنَّ)", "An (أَنْ)", "In (إِنْ)"], 
     a: 1, 
     exp: "Dibaca 'Anna' (أَنَّ) karena berfungsi sebagai masdar muawwal yang menempati posisi maf'ul bih." 
@@ -156,365 +156,25 @@ const questions = [
     exp: "Susunan jar-majrur (عَلَى الْكُرْسِيِّ) yang menjadi penjelas mubtada' disebut Khabar Syibh Jumlah." 
   },
   { 
-    q: "Dalam kalimat 'جَلَسَ مُحَمَّدٌ عَلَى الْكُرْسِيِّ', frasa 'عَلَى الْكُرْسِيِّ' adalah...", 
+    q: "Dalam kalimat 'جَلَسَ مُحَمَّدٌ عَلَى الْكُرْسِيِّ', irab kalimat 'عَلَى الْكُرْسِيِّ' adalah...", 
     options: ["Hal Syibh Jumlah", "Khabar", "Na'at", "Mubtada'"],
     a: 0, 
     exp: "Frasa jar-majrur yang menjelaskan keadaan fa'il (subjek) saat melakukan pekerjaan disebut Hal Syibh Jumlah." 
   },
   { 
-    q: "Bagaimana cara membaca 'ان' setelah fi'il 'أَقُولُ انَّ مُحَمَّدًا صَائِمٌ؟", 
+    q: "Bagaimana cara membaca 'ان' setelah fi'il 'أَقُولُ انَّ مُحَمَّدًا صَائِمٌ", 
     options: ["Anna (أَنَّ)", "Inna (إِنَّ)", "An (أَنْ)", "In (إِنْ)"], 
     a: 1, 
     exp: "Setelah kata kerja 'Qaul' (mengucap), Hamzah 'Inna' wajib dibaca kasrah (إِنَّ)." 
   },
   { 
-    q: "Lengkapi dengan hal mufrad: أَشْرَبُ ____ (Saya minum dalam keadaan berdiri)", 
+    q: "Lengkapi dengan hal mufrad: ____ أَشْرَبُ  (Saya minum dalam keadaan berdiri)", 
     options: ["قَائِمٌ", "قَائِمٍ", "قَائِمًا", "أَقُومُ"],
     a: 2,
     exp: "Hal (keadaan) harus manshub, tanda asalnya adalah fathatain (قَائِمًا)." 
   },
   { 
     q: "Ubah menjadi mubtada' yang berupa masdar muawwal: نّوْمُك جَيِّدٌ", 
-    options: ["أَنْ تَنَامَ جَيِّدٌ", "أَنْتَ نَامَ جَيِّدٌ", "إِنْ يَنَامُ جَيِّدٌ", "النَّوْمُ الْجَيِّدُ"], 
-    a: 0, 
-    exp: "Masdar sharih 'النَّوْمُ' diubah menjadi masdar muawwal 'أَنْ + fi'il mudhari' (أَنْ تَنَامَ)." 
-  },
-  { 
-    q: "Apa i'rab 'أَكَلَ' dalam kalimat 'مُحَمَّدٌ أَكَلَ'?", 
-    options: ["Khabar mufrad", "Khabar jumlah fi'liyyah", "Mubtada' muakhkhar", "Fa'il"], 
-    a: 1, 
-    exp: "'أَكَلَ' adalah fi'il madhi yang mengandung dhomir mustatir (هُوَ), sehingga ia dihitung sebagai satu kalimat (jumlah) yang menjadi khabar." 
-  },
-  { 
-    q: "Kenapa pada ayat 'إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ' dibaca 'Inna' (kasrah)?", 
-    options: ["Setelah qaul", "Awal jumlah (kalimat)", "Sebagai hal", "Kemauan penulis"], 
-    a: 1, 
-    exp: "Hamzah 'Inna' wajib dikasrah jika terletak di awal kalimat (Iftitah al-Jumlah)." 
-  }
-];
-function formatArabic(text){ return text.replace(/([\u0600-\u06FF\s]+)/g, '<span class="arab">$1</span>'); }
-
-function getCategoryData(p) {
-    if(p >= 90) return { qual: "Mumtaz", color: "text-green-600", bg: "bg-green-600", hex: "#16a34a", lightBg: "bg-green-50" };
-    if(p >= 80) return { qual: "Jayyid Jiddan", color: "text-blue-600", bg: "bg-blue-600", hex: "#2563eb", lightBg: "bg-blue-50" };
-    if(p >= 65) return { qual: "Jayyid", color: "text-yellow-600", bg: "bg-yellow-600", hex: "#ca8a04", lightBg: "bg-yellow-50" };
-    if(p >= 50) return { qual: "Maqbul", color: "text-orange-600", bg: "bg-orange-600", hex: "#ea580c", lightBg: "bg-orange-50" };
-    return { qual: "Rasib", color: "text-red-600", bg: "bg-red-600", hex: "#dc2626", lightBg: "bg-red-50" };
-}
-
-function startTimer() {
-    clearInterval(countdown);
-    timeLeft = 20;
-    document.getElementById('time-left').innerText = timeLeft;
-    countdown = setInterval(() => {
-        timeLeft--;
-        document.getElementById('time-left').innerText = timeLeft;
-        if(timeLeft <= 0) { clearInterval(countdown); handleTimeout(); }
-    }, 1000);
-}
-
-function handleTimeout() {
-    const q = questions[currentQuestion];
-    document.querySelectorAll('.answers button').forEach((b, i) => {
-        b.disabled = true;
-        if(i === q.a) b.classList.add('correct');
-    });
-    wrongQuestions.push(currentQuestion + 1);
-    document.getElementById('exp').innerHTML = `<div class="text-red-600 font-bold mb-2">⏰ Waktu Habis! Poin soal ini hangus.</div><strong>Keterangan:</strong><br>${formatArabic(q.exp)}`;
-    document.getElementById('exp').classList.remove('hidden');
-    document.getElementById('nextBtn').classList.remove('hidden');
-}
-
-document.getElementById('btnStart').onclick = () => {
-    userName = document.getElementById('name').value.trim();
-    userRegion = document.getElementById('region').value.trim();
-    if(!userName || !userRegion) return alert("Isi Nama & Daerah!");
-    currentUserToken = "ID-" + Date.now();
-    document.getElementById('intro').classList.add('hidden');
-    document.getElementById('quiz').classList.remove('hidden');
-    loadQuestion();
-};
-
-function loadQuestion() {
-    const q = questions[currentQuestion];
-    document.getElementById('question-label').innerText = `Soal ${currentQuestion+1} / ${questions.length}`;
-    document.getElementById('question-container').innerHTML = `
-        <div class="mb-5 font-semibold text-lg">${formatArabic(q.q)}</div>
-        <div class="answers">${q.options.map((opt,i)=>`<button onclick="selectAnswer(${i})">${formatArabic(opt)}</button>`).join('')}</div>
-        <div id="exp" class="hidden mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 text-sm"><strong>Keterangan:</strong><br>${formatArabic(q.exp)}</div>
-    `;
-    document.getElementById('nextBtn').classList.add('hidden');
-    startTimer();
-}
-
-window.selectAnswer = (idx) => {
-    clearInterval(countdown);
-    const q = questions[currentQuestion];
-    document.querySelectorAll('.answers button').forEach((b, i) => {
-        b.disabled = true;
-        if(i === q.a) b.classList.add('correct');
-        if(i === idx && idx !== q.a) b.classList.add('wrong');
-    });
-    if(idx === q.a) score++; else wrongQuestions.push(currentQuestion + 1);
-    document.getElementById('exp').classList.remove('hidden');
-    document.getElementById('nextBtn').classList.remove('hidden');
-};
-
-document.getElementById('nextBtn').onclick = () => {
-    currentQuestion++;
-    if(currentQuestion < questions.length) loadQuestion();
-    else showResult();
-};
-
-async function showResult() {
-    document.getElementById('quiz').classList.add('hidden');
-    document.getElementById('result').classList.remove('hidden');
-    const p = Math.round((score / questions.length) * 100);
-    const cat = getCategoryData(p);
-    
-    document.getElementById('resName').innerText = userName;
-    document.getElementById('resRegion').innerText = userRegion;
-    document.getElementById('resQual').innerText = cat.qual;
-    document.getElementById('resWrongNumbers').innerText = wrongQuestions.length > 0 ? wrongQuestions.join(', ') : "Gak ada cacat. Sempurna!";
-    
-    document.getElementById('scoreCircle').className = `w-32 h-32 rounded-full border-8 border-white/20 flex items-center justify-center text-5xl font-extrabold shadow-2xl ${cat.bg}`;
-    document.getElementById('scoreCircle').innerText = p;
-
-    if(p >= 70) confetti();
-
-    try {
-        await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:JSON.stringify({name:userName, region:userRegion, score:p, wrong: wrongQuestions.join(','), token: currentUserToken}) });
-        const res = await fetch(SCRIPT_URL);
-        const data = await res.json();
-        allData = (Array.isArray(data) ? data : (data.participants || [])).map(item => ({
-            name: item.name || item[0], region: item.region || item[1], score: parseInt(item.score || item[2]) || 0, wrong: item.wrong || item[3], token: item.token || item[4]
-        })).sort((a,b) => b.score - a.score);
-
-        const rank = allData.findIndex(i => String(i.token) === String(currentUserToken)) + 1;
-        document.getElementById('rankText').innerText = `Peringkat ${rank} dari ${allData.length} Peserta`;
-
-        // Aktifkan Tombol
-        const bS = document.getElementById('btnSertifikat');
-        bS.disabled = false;
-        bS.innerText = "🏆 Unduh Sertifikat";
-        bS.classList.replace('bg-gray-200', 'bg-amber-500');
-        bS.classList.replace('text-gray-400', 'text-white');
-        bS.classList.remove('italic');
-
-        const bR = document.getElementById('btnRaport');
-        bR.disabled = false;
-        bR.innerText = "📊 Lihat Raport & Rekapitulasi";
-        bR.classList.replace('bg-gray-200', 'bg-gray-800');
-        bR.classList.replace('text-gray-400', 'text-white');
-        bR.classList.remove('italic', 'opacity-50');
-        
-    } catch (e) { 
-        console.error(e);
-        document.getElementById('rankText').innerText = "Gagal memuat peringkat.";
-    }
-}
-
-function renderRaport() {
-    const rL = document.getElementById('raportList');
-    const aL = document.getElementById('analyticsList');
-    
-    rL.innerHTML = allData.map((p, i) => {
-        const c = getCategoryData(p.score);
-        const isMe = String(p.token) === String(currentUserToken);
-        return `
-        <div class="flex justify-between items-center p-3 border rounded-xl mb-2 ${c.lightBg} ${isMe ? 'ring-4 ring-blue-600 scale-[1.02] shadow-md' : 'border-gray-200'} transition-all">
-            <div class="text-xs text-left">
-                <div class="flex items-center gap-2">
-                    <b class="text-gray-800 text-sm">${i+1}. ${p.name}</b> 
-                    ${isMe ? '<span class="bg-blue-600 text-white px-2 py-0.5 rounded-full text-[8px] animate-pulse">ANTUM</span>' : ''}
-                </div>
-                <span class="text-gray-500">${p.region}</span> • <span class="font-bold ${c.color}">${c.qual}</span>
-            </div>
-            <div class="text-right">
-                <div class="font-black text-xl ${c.color}">${p.score}%</div>
-            </div>
-        </div>`;
-    }).join('');
-
-    let counts = {};
-    allData.forEach(d => {
-        if(d.wrong) d.wrong.toString().split(',').forEach(num => {
-            let n = num.trim();
-            if(n) counts[n] = (counts[n] || 0) + 1;
-        });
-    });
-    
-    aL.innerHTML = Object.entries(counts)
-        .sort((a,b) => b[1] - a[1])
-        .slice(0, 5)
-        .map(([num, count]) => `
-            <div class="bg-white px-3 py-1 rounded-full border border-amber-300 text-[10px] font-bold text-amber-700 shadow-sm">
-                Soal ${num}: ${count} Orang Salah
-            </div>
-        `).join('');
-}
-
-document.getElementById('btnRetry').onclick = () => { location.reload(); };
-
-document.getElementById('btnRaport').onclick = () => { 
-    renderRaport(); 
-    document.getElementById('result').classList.add('hidden'); 
-    document.getElementById('raportPage').classList.remove('hidden'); 
-};
-document.getElementById('btnBackToResult').onclick = () => { 
-    document.getElementById('raportPage').classList.add('hidden'); 
-    document.getElementById('result').classList.remove('hidden'); 
-};
-
-document.getElementById('btnSertifikat').onclick = () => {
-    const canvas = document.getElementById('certCanvas');
-    const ctx = canvas.getContext('2d');
-    const p = Math.round((score / questions.length) * 100);
-    const cat = getCategoryData(p);
-    const img = new Image();
-    img.src = "cert-bg1.jpg"; 
-    img.onload = () => {
-        ctx.drawImage(img, 0, 0, 120            <input type="text" id="region" placeholder="Daerah Antum" class="w-full p-3 mb-4 border rounded-xl outline-none focus:border-blue-500">
-            <button id="btnStart" class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-all">Mulai Kuis</button>
-        </div>
-    </div>
-
-    <div id="quiz" class="hidden p-6">
-        <div class="flex justify-between items-center mb-4">
-            <span id="question-label" class="text-blue-600 font-bold text-xs uppercase tracking-widest"></span>
-            <div id="timer-display" class="bg-red-100 text-red-600 px-4 py-1 rounded-full font-bold">⏱️ <span id="time-left">20</span>s</div>
-        </div>
-        <div id="question-container"></div>
-        <button id="nextBtn" class="hidden w-full mt-6 py-3 bg-blue-600 text-white font-bold rounded-xl">Lanjut ➡️</button>
-    </div>
-
-    <div id="result" class="hidden p-0 text-center">
-        <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white">
-            <h1 class="text-xl font-semibold opacity-90 mb-2">Tes Selesai!</h1>
-            <div class="flex justify-center my-4">
-                <div class="relative">
-                    <div id="scoreCircle" class="w-32 h-32 rounded-full border-8 border-white/20 flex items-center justify-center text-5xl font-extrabold shadow-2xl transition-all duration-1000">0</div>
-                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-blue-600 px-4 py-1 rounded-full text-[10px] font-bold shadow-md whitespace-nowrap uppercase">SKOR AKHIR</div>
-                </div>
-            </div>
-            <p id="resQual" class="text-lg font-bold mb-1"></p>
-            <div id="rankText" class="text-sm opacity-80 font-medium italic">Memproses data...</div>
-        </div>
-
-        <div class="p-8 bg-white">
-            <div class="grid grid-cols-2 gap-4 mb-8">
-                <div class="text-left p-3 rounded-xl bg-gray-50 border border-gray-100">
-                    <p class="text-[10px] uppercase text-gray-400 font-bold">Nama</p>
-                    <p id="resName" class="font-semibold text-gray-700 truncate"></p>
-                </div>
-                <div class="text-left p-3 rounded-xl bg-gray-50 border border-gray-100">
-                    <p class="text-[10px] uppercase text-gray-400 font-bold">Daerah</p>
-                    <p id="resRegion" class="font-semibold text-gray-700 truncate"></p>
-                </div>
-            </div>
-
-            <div class="mb-8 p-4 rounded-2xl bg-red-50 border border-red-100 text-left">
-                <p class="text-xs font-bold text-red-800 uppercase mb-1">Perlu Muraja'ah Soal:</p>
-                <p id="resWrongNumbers" class="text-sm text-red-700 font-medium"></p>
-            </div>
-            
-            <div class="space-y-3">
-                <button id="btnSertifikat" disabled class="w-full py-4 bg-gray-200 text-gray-400 font-bold rounded-2xl cursor-not-allowed transition-all italic">⏳ Tunggu Sertifikat...</button>
-                <button id="btnRaport" disabled class="w-full py-4 bg-gray-200 text-gray-400 font-bold rounded-2xl transition-all opacity-50 italic">⏳ Tunggu Raport...</button>
-                <button id="btnRetry" class="w-full py-4 bg-blue-100 text-blue-700 font-bold rounded-2xl hover:bg-blue-200 transition-all border border-blue-200">🔄 Ulangi Kuis</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="raportPage" class="hidden p-6">
-        <h1 class="text-xl font-bold mb-4 text-center text-gray-800 italic underline">Raport Global</h1>
-        
-        <div class="mb-6 p-4 bg-amber-50 rounded-2xl border border-amber-200 text-left">
-            <h3 class="text-xs font-bold text-amber-800 uppercase mb-3 flex items-center gap-2">⚠️ Rekapitulasi Soal Sulit (Global)</h3>
-            <div id="analyticsList" class="flex flex-wrap gap-2"></div>
-        </div>
-
-        <h3 class="text-xs font-bold text-gray-400 uppercase mb-3 text-left">Peringkat & Kualifikasi Peserta</h3>
-        <div id="raportList" class="space-y-2 max-h-80 overflow-y-auto pr-2"></div>
-        <button id="btnBackToResult" class="w-full mt-6 py-3 bg-gray-800 text-white rounded-xl font-bold">Kembali</button>
-    </div>
-</div>
-
-<canvas id="certCanvas" width="1200" height="900" class="hidden"></canvas>
-
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzllXMsKSYHCjTTYTR97YC8A1Bh4jqpRsth_s_B0pEmzYmD2Bd-VfBjOPgT2TQWGwXz/exec";
-let currentUserToken = '', currentQuestion = 0, score = 0, userName = '', userRegion = '', countdown, timeLeft = 20, allData = [], wrongQuestions = [];
-
-const questions = [
-  { 
-    q: "Ubah menjadi khabar jumlah fi'liyyah: مُحَمَّدٌ آكِلٌ", 
-    options: ["مُحَمَّدٌ يَأْكُلُ", "كُلْ يَا مُحَمَّدُ", "يَأْكُلُ مُحَمَّدٌ", "مُحَمَّدٌ الْمَأْكُولُ"], 
-    a: 0, 
-    exp: "Khabar jumlah fi'liyyah harus mengandung fi'il. Isim fail 'آكِلٌ' diubah menjadi fi'il mudhari 'يَأْكُلُ'." 
-  },
-  { 
-    q: "Apa kedudukan kalimat 'يَقُومُ' dalam: جَاءَ مُحَمَّدٌ يَقُومُ؟", 
-    options: ["Khabar", "Na'at", "Hal jumlah fi'liyyah", "Maf'ul bih"], 
-    a: 2, 
-    exp: "Kalimat yang datang setelah isim ma'rifah (مُحَمَّدٌ) dan menjelaskan keadaan subjek disebut Hal." 
-  },
-  { 
-    q: "Mana khabar dalam kalimat: مُحَمَّدٌ يَقُومُ عَلَى الْأَرْضِ؟", 
-    options: ["مُحَمَّدٌ", "عَلَى الْأَرْضِ", "Jumlah fi'liyyah يَقُومُ", "Mustatir"], 
-    a: 2, 
-    exp: "Khabar adalah penjelas keadaan Mubtada'. Dalam kalimat ini, penjelasnya adalah perbuatan 'يَقُومُ'." 
-  },
-  { 
-    q: "Lengkapi dengan hal mufrad: جِئْتُ ____", 
-    options: ["آكِلًا", "آكِلٌ", "آكُلُ", "الطَّعَامَ"], 
-    a: 0, 
-    exp: "Hal mufrad wajib berupa isim nakirah yang manshub (berharakat fathatain)." 
-  },
-  { 
-    q: "Bagaimana cara membaca 'ان' pada kalimat: رَأَيْتُ أَنَّكَ تَصُومُ؟", 
-    options: ["Inna (إِنَّ)", "Anna (أَنَّ)", "An (أَنْ)", "In (إِنْ)"], 
-    a: 1, 
-    exp: "Dibaca 'Anna' (أَنَّ) karena berfungsi sebagai masdar muawwal yang menempati posisi maf'ul bih." 
-  },
-  { 
-    q: "Ubah isim masdar menjadi masdar muawwal dengan An: رَأَيْتُ كِتَابَتَكَ", 
-    options: ["رَأَيْتُ أَنْ تَكْتُبَ", "رَأَيْتُ كَتَبَكَ", "رَأَيْتُ أَنَّكَ كَاتِبٌ", "رَأَيْتُ كَاتِبًا"], 
-    a: 0, 
-    exp: "Masdar muawwal dapat dibentuk menggunakan susunan 'An (أَنْ) + Fi'il Mudhari'." 
-  },
-  { 
-    q: "Ubah 'رَأَيْتُ كِتَابَتَكَ' menjadi masdar muawwal yang terdiri dari 'Anna' (أَنَّ)", 
-    options: ["رَأَيْتُ أَنْ تَكْتُبَ", "رَأَيْتُ أَنَّكَ كَاتِبٌ", "رَأَيْتُ إِنَّكَ كَاتِبٌ", "رَأَيْتُ الْكِتَابَةَ"], 
-    a: 1, 
-    exp: "Masdar muawwal dari 'Anna' (أَنَّ) harus terdiri dari 'Anna + Isim + Khabar'." 
-  },
-  { 
-    q: "Apa kedudukan 'عَلَى الْكُرْسِيِّ' dalam kalimat: مُحَمَّدٌ عَلَى الْكُرْسِيِّ؟", 
-    options: ["Hal", "Mubtada'", "Khabar Syibh Jumlah", "Maf'ul Bih"], 
-    a: 2, 
-    exp: "Susunan jar-majrur (عَلَى الْكُرْسِيِّ) yang menjadi penjelas mubtada' disebut Khabar Syibh Jumlah." 
-  },
-  { 
-    q: "Dalam kalimat 'جَلَسَ مُحَمَّدٌ عَلَى الْكُرْسِيِّ', frasa 'عَلَى الْكُرْسِيِّ' adalah...", 
-    options: ["Hal Syibh Jumlah", "Khabar", "Na'at", "Mubtada'"],
-    a: 0, 
-    exp: "Frasa jar-majrur yang menjelaskan keadaan fa'il (subjek) saat melakukan pekerjaan disebut Hal Syibh Jumlah." 
-  },
-  { 
-    q: "Bagaimana cara membaca 'ان' setelah fi'il 'أَقُولُ' (أَقُولُ إِنَّ مُحَمَّدًا صَائِمٌ)؟", 
-    options: ["Anna (أَنَّ)", "Inna (إِنَّ)", "An (أَنْ)", "In (إِنْ)"], 
-    a: 1, 
-    exp: "Setelah kata kerja 'Qaul' (mengucap), Hamzah 'Inna' wajib dibaca kasrah (إِنَّ)." 
-  },
-  { 
-    q: "Lengkapi dengan hal mufrad: أَشْرَبُ ____ (Saya minum dalam keadaan berdiri)", 
-    options: ["قَائِمٌ", "قَائِمٍ", "قَائِمًا", "أَقُومُ"],
-    a: 2,
-    exp: "Hal (keadaan) harus manshub, tanda asalnya adalah fathatain (قَائِمًا)." 
-  },
-  { 
-    q: "Ubah menjadi mubtada' yang berupa masdar muawwal: النَّوْمُ جَيِّدٌ", 
     options: ["أَنْ تَنَامَ جَيِّدٌ", "أَنْتَ نَامَ جَيِّدٌ", "إِنْ يَنَامُ جَيِّدٌ", "النَّوْمُ الْجَيِّدُ"], 
     a: 0, 
     exp: "Masdar sharih 'النَّوْمُ' diubah menjadi masdar muawwal 'أَنْ + fi'il mudhari' (أَنْ تَنَامَ)." 
@@ -726,5 +386,4 @@ document.getElementById('btnSertifikat').onclick = () => {
 };
 </script>
 </body>
-
 </html>
